@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link } from "@inertiajs/vue3";
 
 defineProps({
     canLogin: {
@@ -19,15 +19,15 @@ defineProps({
 });
 
 function handleImageError() {
-    document.getElementById('screenshot-container')?.classList.add('!hidden');
-    document.getElementById('docs-card')?.classList.add('!row-span-1');
-    document.getElementById('docs-card-content')?.classList.add('!flex-row');
-    document.getElementById('background')?.classList.add('!hidden');
+    document.getElementById("screenshot-container")?.classList.add("!hidden");
+    document.getElementById("docs-card")?.classList.add("!row-span-1");
+    document.getElementById("docs-card-content")?.classList.add("!flex-row");
+    document.getElementById("background")?.classList.add("!hidden");
 }
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <!-- <Head title="Welcome" />
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
         <img id="background" class="absolute -left-20 top-0 max-w-[877px]" src="https://laravel.com/assets/img/welcome/background.svg" />
         <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
@@ -172,5 +172,41 @@ function handleImageError() {
                 </footer>
             </div>
         </div>
+    </div> -->
+    <div
+        class="bg-gray-100 min-h-screen w-full max-w-2xl lg:max-w-7xl flex flex-col"
+    >
+        <nav
+            v-if="canLogin"
+            class="flex justify-end p-2 px-6 text-xl space-x-2 bg-gray-200"
+        >
+            <Link
+                v-if="$page.props.auth.user"
+                :href="route('dashboard')"
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+                Dashboard
+            </Link>
+
+            <template v-else>
+                <Link
+                    :href="route('login')"
+                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-900 hover:text-white"
+                >
+                    Log in
+                </Link>
+
+                <Link
+                    v-if="canRegister"
+                    :href="route('register')"
+                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-900 hover:text-white"
+                >
+                    Register
+                </Link>
+            </template>
+        </nav>
+        <main class="text-3xl text-black mt-4 p-4">
+            <span>Welcome to DVIO ONE</span>
+        </main>
     </div>
 </template>
