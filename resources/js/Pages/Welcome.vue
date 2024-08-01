@@ -178,7 +178,7 @@ function handleImageError() {
     >
         <nav
             v-if="canLogin"
-            class="flex justify-end p-2 px-6 text-xl space-x-2 bg-gray-200"
+            class="flex justify-end p-2 px-6 text-xl space-x-2 bg-black"
         >
             <Link
                 v-if="$page.props.auth.user"
@@ -188,10 +188,15 @@ function handleImageError() {
                 Dashboard
             </Link>
 
-            <template v-else>
+            <template v-else class="relative">
+                <img
+                    src="../../assests/DViO-white-logo-1.png"
+                    alt="logo"
+                    class="max-w-[25%] h-[30px] absolute left-0 ml-5"
+                />
                 <Link
                     :href="route('login')"
-                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-900 hover:text-white"
+                    class="rounded-md px-3 py-2 text-sm font-medium hover:text-gray-800 bg-gray-900 text-white hover:bg-white"
                 >
                     Log in
                 </Link>
@@ -199,14 +204,14 @@ function handleImageError() {
                 <Link
                     v-if="canRegister"
                     :href="route('register')"
-                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-900 hover:text-white"
+                    class="rounded-md px-3 py-2 text-sm font-medium hover:text-gray-800 hover:bg-white bg-gray-900 text-white"
                 >
                     Register
                 </Link>
             </template>
         </nav>
-        <main class="text-3xl text-black mt-4 p-4">
-            <span>Welcome to DVIO ONE</span>
+        <main class="text-3xl p-4">
+            <span class="text-black">Welcome to DVIO ONE</span>
         </main>
     </div>
 </template>
