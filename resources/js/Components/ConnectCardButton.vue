@@ -1,7 +1,21 @@
 <template>
-    <button @click="connectAccount" class="rounded-lg bg-gray-100 p-2 m-2">
-        Connect your {{ props.name }} account
-    </button>
+    <div class="flex items-center justify-center">
+        <div v-if="props.name == 'Google Ads'">
+            <img src="../../assests/google-ads.png" class="h-4 w-auto" />
+        </div>
+        <div v-else-if="props.name == 'Facebook Ads'">
+            <img src="../../assests/facebook_ads.png" class="h-4 w-auto" />
+        </div>
+        <div v-else-if="props.name == 'Google Analytics'">
+            <img
+                src="../../assests/google_analytics_4.png"
+                class="h-4 w-auto"
+            />
+        </div>
+        <button @click="connectAccount" class="rounded-lg p-2">
+            Connect your {{ props.name }} account
+        </button>
+    </div>
 </template>
 <script setup>
 import axios from "../utils/axiosInstance";
@@ -19,8 +33,9 @@ const connectAccount = async () => {
     );
     console.log(response && response.data?.data.connect_card);
     const uri = response.data?.data.connect_card.uri;
-    if (uri) {
-        window.location.href = uri;
-    }
+    console.log(uri);
+    // if (uri) {
+    //     window.location.href = uri;
+    // }
 };
 </script>
